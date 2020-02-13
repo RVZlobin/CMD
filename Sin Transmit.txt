@@ -1,0 +1,61 @@
+
+add wave -position insertpoint  \
+sim:/request/clk \
+sim:/request/transmit \
+sim:/request/transmit_clr_flag \
+sim:/request/data_in \
+sim:/request/dev_id \
+sim:/request/cmd \
+sim:/request/index \
+sim:/request/sub_index \
+sim:/request/data_len \
+sim:/request/data_out \
+sim:/request/flag \
+sim:/request/transmit_count \
+sim:/request/stp_data
+
+add wave -position insertpoint  \
+sim:/request/dev_id_reg \
+sim:/request/dev_id_reg_shift \
+sim:/request/dev_id_next
+
+add wave -position insertpoint  \
+sim:/request/data_len_reg \
+sim:/request/data_len_reg_shift \
+sim:/request/data_len_next
+
+add wave -position insertpoint  \
+sim:/request/data_out_reg \
+sim:/request/data_out_reg_shift \
+sim:/request/data_out_next
+
+add watch \
+sim:/request/dev_id_reg \
+sim:/request/dev_id_reg_shift \
+sim:/request/dev_id_next \
+sim:/request/data_len_reg \
+sim:/request/data_len_reg_shift \
+sim:/request/data_len_next \
+sim:/request/data_out_reg \
+sim:/request/data_out_reg_shift \
+sim:/request/data_out_next
+#
+force -freeze sim:/request/clk 1 0, 0 {10000 ps} -r {20 ns}
+force -freeze sim:/request/data_in 00000000 0
+force -freeze sim:/request/dev_id 00000001 0
+run 80 ns
+#
+force -freeze sim:/request/data_in 00000001 0
+force -freeze sim:/request/transmit 0 0
+run 80 ns
+#
+force -freeze sim:/request/data_in 00000001 0
+force -freeze sim:/request/transmit 0 0
+run 80 ns
+force -freeze sim:/request/transmit 1 0
+run 80 ns
+force -freeze sim:/request/data_in 00000110 0
+force -freeze sim:/request/transmit 0 0
+run 80 ns
+force -freeze sim:/request/transmit 1 0
+force -freeze sim:/request/transmit 1 0

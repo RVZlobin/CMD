@@ -1,0 +1,168 @@
+add wave -position insertpoint  \
+sim:/queue/clk \
+sim:/queue/queue_put \
+sim:/queue/queue_clear  \
+sim:/queue/queue_replete  \
+sim:/queue/data_serial_fix \
+sim:/queue/get_next \
+sim:/queue/dev_id \
+sim:/queue/cmd \
+sim:/queue/data_len \
+sim:/queue/index \
+sim:/queue/sub_index \
+sim:/queue/data \
+sim:/queue/data_serial \
+sim:/queue/queue_fix \
+sim:/queue/clear_flag \
+sim:/queue/replete_flag \
+sim:/queue/serial_data \
+sim:/queue/queue_mem \
+sim:/queue/index_queue_begin \
+sim:/queue/index_queue_end \
+sim:/queue/state_queue_reg \
+sim:/queue/stp_send_reg
+#
+force -freeze sim:/queue/clk 1 0, 0 {10000 ps} -r {20 ns}
+force -freeze sim:/queue/get_next 1 0
+######################################
+# 1
+run 80 ns
+force -freeze sim:/queue/dev_id 00000001 0
+force -freeze sim:/queue/cmd 00000011 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 2
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 00000111 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 3
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 00001111 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+force -freeze sim:/queue/get_next 0 0
+# 4
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 00011111 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 5
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 00111111 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+force -freeze sim:/queue/get_next 1 0
+# 6
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 01111111 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 7
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 11111111 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 8
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 11111110 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 9
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 11111100 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+######################################
+# 10
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 11111000 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+run 20 ns
+######################################
+# 11
+force -freeze sim:/queue/dev_id 00000010 0
+force -freeze sim:/queue/cmd 11110000 0
+force -freeze sim:/queue/data_len 00000001 0
+force -freeze sim:/queue/index 00000010 0
+force -freeze sim:/queue/sub_index 0000000000001000 0
+force -freeze sim:/queue/data 0000000000000000000000000000000000000000000000000000000011111111 0
+run 20 ns
+force -freeze sim:/queue/queue_put 1 0
+run 20 ns
+force -freeze sim:/queue/queue_put 0 0
+run 20 ns
+######################################
+
+force -freeze sim:/queue/get_next 1 0, 0 {100000 ps} -r {200 ns}
+
+run 22 us
